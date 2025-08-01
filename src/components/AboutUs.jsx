@@ -148,43 +148,85 @@ export default function AboutUs() {
           width: calc(250px * ${teamMembers.length * 3}); /* Member width * total duplicates */
         }
 
-        .team-member-card {
-          display: inline-block; /* Essential for horizontal scrolling */
-          flex: 0 0 auto; /* Prevent stretching/shrinking */
-          width: 250px; /* Fixed width for each card */
-          text-align: center; /* text-center */
-          padding: 1rem;
-          margin: 0 1.5rem; /* Space between members */
-        }
+        .team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
 
-        .team-member-card img {
-          width: 150px; /* w-28, increased for visual impact */
-          height: 150px; /* h-28, increased */
-          margin-left: auto; /* mx-auto */
-          margin-right: auto; /* mx-auto */
-          border-radius: 50%; /* rounded-full */
-          object-fit: cover; /* object-cover */
-          box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* shadow-lg, slightly stronger */
-          border: 4px solid #00bcd4; /* Accent border around image */
-          transition: transform 0.3s ease, border-color 0.3s ease;
-        }
+.team-member-card {
+  width: 250px;
+  text-align: center;
+  padding: 1rem;
+}
 
-        .team-member-card:hover img {
-            transform: scale(1.05); /* Slight zoom on hover */
-            border-color: #00a4b7; /* Darker accent on hover */
-        }
+.team-member-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  border: 4px solid #00bcd4;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
 
-        .team-member-card h4 {
-          font-size: 1.3rem; /* text-lg, increased */
-          font-weight: 600; /* font-semibold */
-          margin-top: 1.5rem; /* mt-4 */
-          color: #222;
-        }
+.team-member-card:hover img {
+  transform: scale(1.05);
+  border-color: #00a4b7;
+}
 
-        .team-member-card p {
-          font-size: 0.95rem; /* text-sm, slightly larger */
-          color: #666; /* text-gray-500 */
-        }
+.team-member-card h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  color: #222;
+}
+
+.team-member-card p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+
+        // .team-member-card {
+        //   display: inline-block; /* Essential for horizontal scrolling */
+        //   flex: 0 0 auto; /* Prevent stretching/shrinking */
+        //   width: 250px; /* Fixed width for each card */
+        //   text-align: center; /* text-center */
+        //   padding: 1rem;
+        //   margin: 0 1.5rem; /* Space between members */
+        // }
+
+        // .team-member-card img {
+        //   width: 150px; /* w-28, increased for visual impact */
+        //   height: 150px; /* h-28, increased */
+        //   margin-left: auto; /* mx-auto */
+        //   margin-right: auto; /* mx-auto */
+        //   border-radius: 50%; /* rounded-full */
+        //   object-fit: cover; /* object-cover */
+        //   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* shadow-lg, slightly stronger */
+        //   border: 4px solid #00bcd4; /* Accent border around image */
+        //   transition: transform 0.3s ease, border-color 0.3s ease;
+        // }
+
+        // .team-member-card:hover img {
+        //     transform: scale(1.05); /* Slight zoom on hover */
+        //     border-color: #00a4b7; /* Darker accent on hover */
+        // }
+
+        // .team-member-card h4 {
+        //   font-size: 1.3rem; /* text-lg, increased */
+        //   font-weight: 600; /* font-semibold */
+        //   margin-top: 1.5rem; /* mt-4 */
+        //   color: #222;
+        // }
+
+        // .team-member-card p {
+        //   font-size: 0.95rem; /* text-sm, slightly larger */
+        //   color: #666; /* text-gray-500 */
+        // }
 
         /* Keyframes for infinite horizontal scroll */
         @keyframes scrollTeam {
@@ -260,25 +302,20 @@ export default function AboutUs() {
       </div>
 
       {/* Team Section */}
-      <div className="team-section-header">
-        <h3>Meet Our Team</h3>
-        <p>The people behind our passion and success.</p>
-      </div>
+<div className="team-section-header">
+  <h3>Meet Our Team</h3>
+  <p>The people behind our passion and success.</p>
+</div>
 
-      <div className="scrolling-team-wrapper">
-        <div className="scrolling-team-inner">
-          {scrollingTeamMembers.map((member, idx) => (
-            <div key={idx} className="team-member-card">
-              <img
-                src={member.image}
-                alt={member.name}
-              />
-              <h4>{member.name}</h4>
-              <p>{member.role}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+<div className="team-grid">
+  {teamMembers.map((member, idx) => (
+    <div key={idx} className="team-member-card">
+      <img src={member.image} alt={member.name} />
+      <h4>{member.name}</h4>
+      <p>{member.role}</p>
+    </div>
+  ))}
+</div>
     </section>
   );
 }
