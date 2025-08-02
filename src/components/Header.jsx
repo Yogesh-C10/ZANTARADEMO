@@ -16,6 +16,7 @@ export default function Header() {
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
         }
 
+        
         @media (min-width: 768px) { /* md:flex-row */
           .header-container {
             flex-direction: row;
@@ -29,41 +30,39 @@ export default function Header() {
         }
 
         .logo-image {
-          height: 7.5rem; /* h-14 */
+          height: 7.5rem; /* h-14 - Desktop size */
           width: auto;
         }
 
         .company-name-text {
           color: #000000; /* text-black */
-          padding:10px;
+          padding: 10px;
           border-radius: 12px;
         }
         
-   
-
         .company-name-text p { 
-        margin: 0px;
-          font-size: 1.5rem; /* text-2xl */
+          margin: 0px;
+          font-size: 1.5rem; /* text-2xl - Desktop size */
           font-weight: 700; /* font-bold */
           line-height: 1.25; /* leading-tight */
         }
 
         .company-name-text p .llp-spacing {
           letter-spacing: 0.2em; /* tracking-widest */
-          
         }
 
         .cta-button-wrapper {
           margin-top: 1rem;
-        display: flex; /* Make the wrapper a flex container */
-        gap: 1rem;     /* Add space between flex items (buttons) */
-        /* You can also use justify-content, align-items, etc., for more control */
-        flex-wrap: wrap; /* Allows buttons to wrap to the next line if space is limited */
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+          justify-content: flex-end; /* Default to end on larger screens */
         }
 
         @media (min-width: 768px) { /* md:mt-0 */
           .cta-button-wrapper {
             margin-top: 0;
+            justify-content: flex-end; /* Align buttons to the end on desktop */
           }
         }
 
@@ -80,6 +79,42 @@ export default function Header() {
 
         .cta-button:hover {
           background-color: #2d3748; /* hover:bg-gray-800 */
+        }
+
+        /* --- Mobile Specific Styles (max-width: 767px) --- */
+        @media (max-width: 767px) { 
+          .logo-image {
+            height: 4.5rem; /* Reduced height for mobile */
+          }
+
+          .company-name-text p { 
+            font-size: 1rem; /* Reduced font size for mobile */
+          }
+          .company-name-text p .llp-spacing {
+            letter-spacing: 0.1em; /* Slightly reduced letter spacing for mobile */
+          }
+          .company-name-text {
+            padding: 5px; /* Reduced padding for mobile */
+          }
+          .logo-section {
+            flex-direction: column; /* Stack logo and text on top of each other on mobile */
+            text-align: center;
+          }
+
+          /* --- Button Alignment for Mobile --- */
+          .cta-button-wrapper {
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: center;    /* Center individual buttons horizontally */
+            width: 100%;            /* Ensure wrapper takes full width */
+            padding: 0 1rem;        /* Add some padding to the sides of the wrapper */
+          }
+
+          .cta-button {
+            display: block; /* Make buttons take full available width in the column */
+            width: 100%;    /* Take full width of the wrapper's padded area */
+            max-width: 300px; /* Prevent buttons from becoming too wide on slightly larger mobile screens */
+            text-align: center; /* Center the text within the button */
+          }
         }
       `}</style>
 
