@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -16,7 +16,7 @@ L.Icon.Default.mergeOptions({
 
 export default function Footer() {
   const zentaraLocation = [13.336109, 77.106509];
-
+  const [showMessage, setShowMessage] = useState(false);
   return (
     <footer className="footer-container">
       <style>{`
@@ -155,6 +155,18 @@ export default function Footer() {
           border-top: 1px solid rgba(255, 255, 255, 0.1);
           margin-top: 3rem;
         }
+          .popup-message {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        background-color: #fff;
+        color:#333;
+        border: 1px solid #333;
+        padding: 10px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        z-index: 999;
+        }
       `}</style>
 
       <div className="footer-content">
@@ -169,7 +181,7 @@ export default function Footer() {
           <p>
             26, Prasiddhi Road Ring Rd,<br />behind MRPL petrol pump,<br />Maralur Dinne, Tumakuru, Karnataka - 572135
           </p>
-          <p>Phone: +91 9741721064</p>
+          <p>Phone: +91 7892931510</p>
           <p>Email: <a href="mailto:zentaraconstructions@gmail.com">zentaraconstructions@gmail.com</a></p>
         </div>
 
@@ -203,9 +215,16 @@ export default function Footer() {
         <img src="/images/WhatsApp.svg.png" alt="WhatsApp" />
       </a>
 
-      <a href="#contact-us" className="floating-icon chat-icon">
+      <div className="floating-icon chat-icon" onClick={() => setShowMessage(true)}>
         <img src="/images/chatbot.png" alt="Chat" />
-      </a>
+      </div>
+
+      {showMessage && (
+        <div className="popup-message">
+          Will be coming soon
+          <button onClick={() => setShowMessage(false)}>Close</button>
+        </div>
+      )}
     </footer>
   );
 }

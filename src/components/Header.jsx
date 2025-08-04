@@ -1,7 +1,11 @@
 import { AlignCenter } from 'lucide-react';
-import React from 'react';
+import React, { useState } from 'react';
+
 
 export default function Header() {
+    const [showMessage, setShowMessage] = useState(false);
+    const [showCareerPopup, setShowCareerPopup] = useState(false);
+
   return (
     <header className="header-container">
       {/* Inline CSS for this component only */}
@@ -115,6 +119,33 @@ export default function Header() {
             max-width: 300px; /* Prevent buttons from becoming too wide on slightly larger mobile screens */
             text-align: center; /* Center the text within the button */
           }
+            .popup-message {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  color: #000000;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  text-align: center;
+}
+
+.popup-message button {
+  margin-top: 1rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.popup-message button:hover {
+  background-color: #333;
+}
+
         }
       `}</style>
 
@@ -134,9 +165,18 @@ export default function Header() {
       <a href="#about" className="cta-button">
          ABOUT US
         </a>
-      <a href="#form" className="cta-button">
-          CARRIERS
-        </a>
+        <button
+  className="cta-button"
+  onClick={() => setShowCareerPopup(true)}
+>
+  CARRIERS
+</button>
+{showCareerPopup && (
+  <div className="popup-message">
+    <p>We will notify you soon!</p>
+    <button onClick={() => setShowCareerPopup(false)}>Close</button>
+  </div>
+)}
         <a href="#contact" className="cta-button">
           GET A FREE ESTIMATE
         </a>
